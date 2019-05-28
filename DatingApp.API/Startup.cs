@@ -26,10 +26,19 @@ namespace DatingApp.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
+            /* used to set up a different data base 
+            var connection = "Data Source=blogging.db";
+            services.AddDbContext<BloggingContext>
+            (options => options.UseSqlite(connection));
+            */
+
             services.AddDbContext<DataContext>(x =>x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
+            //adds repository services to app 
+            services.AddScoped<IAuthoRepository,AuthRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

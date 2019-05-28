@@ -1,0 +1,9 @@
+used to create new data in a database
+
+need to add to DataContext.cs file as a new DBcontext method
+
+need to add to migrations
+dotnew ef migrations add "name"
+
+to update teh database and see new entity 
+dotnet ef database update

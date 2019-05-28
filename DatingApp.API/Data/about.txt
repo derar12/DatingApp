@@ -1,0 +1,1 @@
+implements functions that are used on data given
