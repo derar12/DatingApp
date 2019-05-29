@@ -1,0 +1,3 @@
+the nav farm
+
+ngmodel is used for two way binding

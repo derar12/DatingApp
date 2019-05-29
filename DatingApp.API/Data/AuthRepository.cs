@@ -15,6 +15,7 @@ namespace DatingApp.API.Data
             _context = context;
 
         }
+// issue is here 
         public async Task<User> Login(string username, string password)
         {
             // first ore default will find an existing one or return default
@@ -30,17 +31,15 @@ namespace DatingApp.API.Data
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            using( var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt)){
-                   
+            using( var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt)){         
                    var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                     for(int i = 0; i < computedHash.Length;i++)
                         {
-                                if(computedHash[i] != password[i])
-                                    return false;
+                            if(computedHash[i] != password[i])
+                                return false;
                         }
                }
                return true;
-
         }
 
         public async Task<User> Register(User user, string password)
@@ -59,14 +58,11 @@ namespace DatingApp.API.Data
 // uses system to create a password key to encrypt 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
-           
                using( var hmac = new System.Security.Cryptography.HMACSHA512()){
                    passwordSalt = hmac.Key;
                    passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                }
-
         }
-
         public async Task<bool> UserExists(string username)
         {
             if(await _context.Users.AnyAsync(x=> x.Username == username))
