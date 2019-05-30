@@ -15,7 +15,7 @@ namespace DatingApp.API.Data
             _context = context;
 
         }
-// issue is here 
+// FIXed
         public async Task<User> Login(string username, string password)
         {
             // first ore default will find an existing one or return default
@@ -29,13 +29,14 @@ namespace DatingApp.API.Data
             return user; 
         }
 
+//checks hash and salt 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using( var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt)){         
                    var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                     for(int i = 0; i < computedHash.Length;i++)
                         {
-                            if(computedHash[i] != password[i])
+                            if(computedHash[i] != passwordHash[i])
                                 return false;
                         }
                }
