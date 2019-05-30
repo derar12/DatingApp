@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +12,11 @@ namespace DatingApp.API.Controllers
     //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public ValuesController(DataContext context)
+        public UsersController(DataContext context)
         { 
             _context = context;
         }
@@ -24,8 +24,8 @@ namespace DatingApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
-            var values = await _context.Values.ToListAsync();
-            return Ok(values);
+            var userslist = await _context.Users.ToListAsync();
+            return Ok(userslist);
         }
 
         // GET api/values/5
@@ -33,26 +33,7 @@ namespace DatingApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-            var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id) ;
-            return Ok(value);
+            var userslist = await _context.Users.FirstOrDefaultAsync(x => x.Id == id) ;
+            return Ok(userslist);
         }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-    }
-}
+    }}

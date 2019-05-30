@@ -1,0 +1,4 @@
+submit text goings into ngform model object and gets passed 
+calls register() at the top of the html ANGULAR - form 
+
+which calls registeR(model) in auth services
